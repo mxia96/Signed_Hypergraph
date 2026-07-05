@@ -1,0 +1,8 @@
+numpy>=1.21
+scipy>=1.7
+scikit-learn>=1.0
+PyYAML>=5.4
+torch>=1.12
+# Optional: only needed for init_method: kmedoids_signed (the code-default init).
+# Use init_method: kmeans to avoid it.
+scikit-learn-extra>=0.3

@@ -1,0 +1,29 @@
+# ---- data ----
+signal_path: data/x.npy          # (N, V, V) per-subject Pearson correlation stack
+label_path:  data/y.npy          # (N,) labels (only used with --eval-svm)
+output_path: data/H.npy          # output (N, V, E) incidence matrix
+
+# ---- hypergraph size ----
+num_hyperedges: 20
+
+alpha: 0.10
+beta:  0.10
+lam:   0.02
+
+num_iters: 200
+learning_rate: 0.01
+step_scale_by_loss: false
+convergence_tol: 0.001
+row_normalize: true
+
+laplacian_mode: full             
+laplacian_k_cols: 5             
+laplacian_eps: 0.01
+laplacian_normalizer: 116.0
+laplacian_use_sqrt: true
+
+reg3_mode: cosine
+
+# ---- initialization ----
+init_method: kmeans              
+init_random_state: 42

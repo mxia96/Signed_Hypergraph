@@ -1,0 +1,45 @@
+# ==========================================================================
+# Hypergraph neural network (Stage 2) -- PyTorch.
+# Defaults reproduce the notebook run. Paper settings noted inline.
+# ==========================================================================
+
+# ---- data ----
+fmri_path:       data/x.npy      # (N, V, V) node features (Pearson correlation rows)
+hypergraph_path: data/H.npy      # (N, V, E) incidence matrices from Stage 1
+label_path:      data/y.npy      # (N,) labels
+test_ratio: 0.2                  # single stratified train/test split
+split_seed: 42
+
+# ---- architecture ----
+model_type: pool                 
+num_roi: 68
+input_features: 68
+output_features: 32
+input_activation: tanh           # after lin0, before conv. none|relu|tanh|gelu|leaky_relu|elu|sigmoid
+depth: 1                         
+hidden_channels_mlp: [64, 32]
+conv_dropout: 0.2
+mlp_dropout: 0.0
+symmetric_norm: false            
+
+pool_ratio: 0.8                  
+pool_momentum: 0.9
+
+# PCA on node features 
+use_pca: false
+pca_components: 10
+
+# ---- optimization ----
+optimizer: sgd                   
+lr: 0.001                         
+momentum: 0.9                    
+weight_decay: 0.001
+scheduler_step: 10
+scheduler_gamma: 0.1             
+epochs: 60
+batch_size: 60
+grad_clip: null
+
+device: cuda                     
+seed: 42
+log_every: 10
